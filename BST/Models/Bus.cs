@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BST.Models
 {
-    internal class Bus
+    public class Bus
     {
+        public int BusID { get; set; }
+
+        public int SeatsCapacity { get; set; }
+
+        public int SeatsAvailable { get; set; }
     }
 }
