@@ -10,7 +10,7 @@ namespace BST.Data
     public class DatabaseService
     {
         private string connectionString =
-            "Server=DESKTOP-47GUR0C\\SQLEXPRESS;Database=CatanBusDB;Trusted_Connection=True;";
+            "Server=DESKTOP-47GUR0C\\SQLEXPRESS;Database=CatanBusDB;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public SqlConnection GetConnection()
         {
