@@ -56,11 +56,8 @@ namespace BST.Forms
             {
                 int tripId = Convert.ToInt32(dgvTrips.Rows[e.RowIndex].Cells["colTripID"].Value);
 
-                MessageBox.Show("Booking trip ID: " + tripId);
-
-                // later we will open booking form here
-                // BookingForm booking = new BookingForm(tripId);
-                // booking.Show();
+                BookingForm booking = new BookingForm(tripId);
+                booking.Show();
             }
         }
     }
