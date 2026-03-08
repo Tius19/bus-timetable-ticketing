@@ -31,13 +31,16 @@
             label1 = new Label();
             numSeats = new NumericUpDown();
             btnConfirm = new Button();
+            panel1 = new Panel();
+            lblTitle = new Label();
             ((System.ComponentModel.ISupportInitialize)numSeats).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(193, 141);
+            label1.Location = new Point(75, 130);
             label1.Name = "label1";
             label1.Size = new Size(95, 15);
             label1.TabIndex = 0;
@@ -45,7 +48,7 @@
             // 
             // numSeats
             // 
-            numSeats.Location = new Point(364, 139);
+            numSeats.Location = new Point(279, 128);
             numSeats.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numSeats.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numSeats.Name = "numSeats";
@@ -55,7 +58,7 @@
             // 
             // btnConfirm
             // 
-            btnConfirm.Location = new Point(310, 220);
+            btnConfirm.Location = new Point(209, 209);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(75, 23);
             btnConfirm.TabIndex = 2;
@@ -63,17 +66,40 @@
             btnConfirm.UseVisualStyleBackColor = true;
             btnConfirm.Click += btnConfirm_Click_1;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(lblTitle);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(506, 84);
+            panel1.TabIndex = 3;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 16F);
+            lblTitle.Location = new Point(193, 28);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(102, 30);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "CatanBus";
+            lblTitle.Click += lblTitle_Click;
+            // 
             // BookingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(506, 289);
+            Controls.Add(panel1);
             Controls.Add(btnConfirm);
             Controls.Add(numSeats);
             Controls.Add(label1);
             Name = "BookingForm";
             Text = "BookingForm";
             ((System.ComponentModel.ISupportInitialize)numSeats).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -83,5 +109,7 @@
         private Label label1;
         private NumericUpDown numSeats;
         private Button btnConfirm;
+        private Panel panel1;
+        private Label lblTitle;
     }
 }
