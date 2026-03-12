@@ -18,19 +18,23 @@ namespace BST.Forms
         {
             int seatCount = (int)numSeats.Value;
 
-            decimal pricePerSeat = 1500; // simple fixed price
+            decimal pricePerSeat = 1500;
             decimal totalPrice = seatCount * pricePerSeat;
 
-            int userId = 1; // temporary (later we pass logged in user)
+            int userId = Session.CurrentUser.UserID;
 
-            ticketService.BookTicket(userId, tripId, seatCount, totalPrice);
-
-            MessageBox.Show("Ticket booked successfully!");
+            PaymentForm payment = new PaymentForm(tripId, userId, totalPrice, seatCount);
+            payment.ShowDialog();
 
             this.Close();
         }
 
         private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BookingForm_Load(object sender, EventArgs e)
         {
 
         }

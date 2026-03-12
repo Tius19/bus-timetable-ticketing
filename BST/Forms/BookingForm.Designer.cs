@@ -40,7 +40,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(75, 130);
+            label1.Location = new Point(62, 130);
             label1.Name = "label1";
             label1.Size = new Size(95, 15);
             label1.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             // numSeats
             // 
-            numSeats.Location = new Point(279, 128);
+            numSeats.Location = new Point(224, 128);
             numSeats.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numSeats.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numSeats.Name = "numSeats";
@@ -58,7 +58,7 @@
             // 
             // btnConfirm
             // 
-            btnConfirm.Location = new Point(209, 209);
+            btnConfirm.Location = new Point(150, 201);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(75, 23);
             btnConfirm.TabIndex = 2;
@@ -72,31 +72,32 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(506, 84);
+            panel1.Size = new Size(387, 84);
             panel1.TabIndex = 3;
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 16F);
-            lblTitle.Location = new Point(193, 28);
+            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitle.Location = new Point(108, 27);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(102, 30);
+            lblTitle.Size = new Size(175, 30);
             lblTitle.TabIndex = 1;
-            lblTitle.Text = "CatanBus";
+            lblTitle.Text = "Booking Details";
             lblTitle.Click += lblTitle_Click;
             // 
             // BookingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(506, 289);
+            ClientSize = new Size(387, 297);
             Controls.Add(panel1);
             Controls.Add(btnConfirm);
             Controls.Add(numSeats);
             Controls.Add(label1);
             Name = "BookingForm";
             Text = "BookingForm";
+            Load += BookingForm_Load;
             ((System.ComponentModel.ISupportInitialize)numSeats).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
