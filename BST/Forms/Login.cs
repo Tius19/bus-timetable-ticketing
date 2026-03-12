@@ -25,15 +25,26 @@ namespace BST
             {
                 MessageBox.Show("Login successful");
 
-                if (user.IsAdmin)
+                // ⭐ SAVE USER SESSION
+                Session.CurrentUser = user;
+
+                if (user.IsModerator)
+                {
+                    ModeratorDashboardForm mod = new ModeratorDashboardForm();
+                    mod.Show();
+                    this.Hide();
+                }
+                else if (user.IsAdmin)
                 {
                     AdminDashboardForm admin = new AdminDashboardForm();
                     admin.Show();
+                    this.Hide();
                 }
                 else
                 {
                     UserDashboardForm userDash = new UserDashboardForm();
                     userDash.Show();
+                    this.Hide();
                 }
 
                 this.Hide();

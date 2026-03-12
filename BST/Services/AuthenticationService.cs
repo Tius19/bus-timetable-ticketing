@@ -2,10 +2,6 @@
 using BST.Models;
 using Microsoft.Data.SqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BST.Services
 {
@@ -13,15 +9,19 @@ namespace BST.Services
     {
         private DatabaseService db = new DatabaseService();
 
-        public bool Register(string email, string password)
+        // REGISTER USER
+        public bool Register(string username, string email, string password)
         {
             using SqlConnection conn = db.GetConnection();
             conn.Open();
 
-            string query = "INSERT INTO Users (Email, Password, IsAdmin) VALUES (@Email,@Password,0)";
+            string query = @"INSERT INTO Users 
+                            (Username, Email, Password, IsAdmin, IsModerator) 
+                            VALUES (@Username, @Email, @Password, 0, 0)";
 
             SqlCommand cmd = new SqlCommand(query, conn);
 
+            cmd.Parameters.AddWithValue("@Username", username);
             cmd.Parameters.AddWithValue("@Email", email);
             cmd.Parameters.AddWithValue("@Password", password);
 
@@ -36,29 +36,34 @@ namespace BST.Services
             }
         }
 
+        // LOGIN USER
         public User Login(string email, string password)
         {
             using SqlConnection conn = db.GetConnection();
             conn.Open();
 
-            string query = "SELECT * FROM Users WHERE Email=@Email AND Password=@Password";
+            string query = @"SELECT * FROM Users 
+                     WHERE Email = @Email AND Password = @Password";
 
-            SqlCommand cmd = new SqlCommand(query, conn);
-
+            using SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@Email", email);
             cmd.Parameters.AddWithValue("@Password", password);
 
-            SqlDataReader reader = cmd.ExecuteReader();
+            using SqlDataReader reader = cmd.ExecuteReader();
 
             if (reader.Read())
             {
-                return new User
+                User user = new User
                 {
-                    UserID = (int)reader["UserID"],
-                    Email = reader["Email"].ToString(),
-                    Password = reader["Password"].ToString(),
-                    IsAdmin = (bool)reader["IsAdmin"]
+                    UserID = Convert.ToInt32(reader["UserID"]),
+                    Username = reader["Username"]?.ToString(),
+                    Email = reader["Email"]?.ToString(),
+                    Password = reader["Password"]?.ToString(),
+                    IsAdmin = reader["IsAdmin"] != DBNull.Value && Convert.ToBoolean(reader["IsAdmin"]),
+                    IsModerator = reader["IsModerator"] != DBNull.Value && Convert.ToBoolean(reader["IsModerator"])
                 };
+
+                return user;
             }
 
             return null;

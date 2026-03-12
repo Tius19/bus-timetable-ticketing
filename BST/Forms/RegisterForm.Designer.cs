@@ -35,22 +35,26 @@
             txtPassword = new TextBox();
             btnRegister = new Button();
             btnBack = new Button();
+            txtUsername = new TextBox();
+            label3 = new Label();
+            txtConfirmPassword = new TextBox();
+            label4 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F);
-            label1.Location = new Point(271, 32);
+            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            label1.Location = new Point(101, 35);
             label1.Name = "label1";
-            label1.Size = new Size(224, 30);
+            label1.Size = new Size(237, 30);
             label1.TabIndex = 1;
             label1.Text = "CATAN BUS REGISTER";
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(241, 134);
+            lblEmail.Location = new Point(54, 160);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(36, 15);
             lblEmail.TabIndex = 2;
@@ -59,7 +63,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(241, 174);
+            label2.Location = new Point(54, 200);
             label2.Name = "label2";
             label2.Size = new Size(57, 15);
             label2.TabIndex = 3;
@@ -67,14 +71,14 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(357, 134);
+            txtEmail.Location = new Point(179, 157);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(200, 23);
             txtEmail.TabIndex = 4;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(357, 174);
+            txtPassword.Location = new Point(179, 197);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(200, 23);
             txtPassword.TabIndex = 5;
@@ -82,7 +86,7 @@
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(357, 236);
+            btnRegister.Location = new Point(119, 296);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(75, 23);
             btnRegister.TabIndex = 6;
@@ -92,7 +96,7 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(464, 236);
+            btnBack.Location = new Point(254, 296);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(75, 23);
             btnBack.TabIndex = 7;
@@ -100,11 +104,49 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
+            // txtUsername
+            // 
+            txtUsername.Location = new Point(179, 116);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(200, 23);
+            txtUsername.TabIndex = 9;
+            txtUsername.UseSystemPasswordChar = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(54, 119);
+            label3.Name = "label3";
+            label3.Size = new Size(62, 15);
+            label3.TabIndex = 8;
+            label3.Text = "UserName";
+            // 
+            // txtConfirmPassword
+            // 
+            txtConfirmPassword.Location = new Point(179, 236);
+            txtConfirmPassword.Name = "txtConfirmPassword";
+            txtConfirmPassword.Size = new Size(200, 23);
+            txtConfirmPassword.TabIndex = 11;
+            txtConfirmPassword.UseSystemPasswordChar = true;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(54, 239);
+            label4.Name = "label4";
+            label4.Size = new Size(104, 15);
+            label4.TabIndex = 10;
+            label4.Text = "Confirm Password";
+            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(423, 402);
+            Controls.Add(txtConfirmPassword);
+            Controls.Add(label4);
+            Controls.Add(txtUsername);
+            Controls.Add(label3);
             Controls.Add(btnBack);
             Controls.Add(btnRegister);
             Controls.Add(txtPassword);
@@ -114,6 +156,7 @@
             Controls.Add(label1);
             Name = "RegisterForm";
             Text = "RegisterForm";
+            Load += RegisterForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -127,5 +170,9 @@
         private TextBox txtPassword;
         private Button btnRegister;
         private Button btnBack;
+        private TextBox txtUsername;
+        private Label label3;
+        private TextBox txtConfirmPassword;
+        private Label label4;
     }
 }
