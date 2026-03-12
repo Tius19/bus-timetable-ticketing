@@ -9,7 +9,7 @@ namespace BST.Models
     public class Bus
     {
         public int BusID { get; set; }
-
+        public string BusNumber { get; set; }
         public int SeatsCapacity { get; set; }
 
         public int SeatsAvailable { get; set; }
