@@ -21,5 +21,8 @@ namespace BST.Models
         public DateTime Arrival { get; set; }
 
         public string Status { get; set; }
+        public decimal Price { get; set; }
+        public string BusNumber { get; set; }
+        public int SeatsAvailable { get; set; }
     }
 }

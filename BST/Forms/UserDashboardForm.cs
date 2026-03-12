@@ -28,6 +28,8 @@ namespace BST.Forms
         private void UserDashboardForm_Load(object sender, EventArgs e)
         {
             LoadTrips();
+            LoadLocations();
+            lblWelcome.Text = "Welcome, " + Session.CurrentUser.Username;
         }
 
         // NEW: Method to load trips into grid
@@ -52,13 +54,89 @@ namespace BST.Forms
         // BOOK button logic
         private void dgvTrips_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvTrips.Columns[e.ColumnIndex].Name == "colBook" && e.RowIndex >= 0)
+            if (e.RowIndex < 0) return;
+
+            if (dgvTrips.Columns[e.ColumnIndex].Name == "colBook")
             {
-                int tripId = Convert.ToInt32(dgvTrips.Rows[e.RowIndex].Cells["colTripID"].Value);
+                int seatsLeft = Convert.ToInt32(dgvTrips.Rows[e.RowIndex].Cells["SeatsLeft"].Value);
+
+                if (seatsLeft <= 0)
+                {
+                    MessageBox.Show("This bus is fully booked.");
+                    return;
+                }
+                int tripId = Convert.ToInt32(dgvTrips.Rows[e.RowIndex].Cells["TripID"].Value);
 
                 BookingForm booking = new BookingForm(tripId);
                 booking.Show();
             }
+        }
+
+        private void btnMyTickets_Click(object sender, EventArgs e)
+        {
+            MyTicketsForm tickets = new MyTicketsForm();
+            tickets.Show();
+        }
+
+        private void LoadLocations()
+        {
+            var trips = tripService.GetAllTrips();
+
+            cmbFrom.Items.Clear();
+            cmbTo.Items.Clear();
+
+            var fromLocations = trips.Select(t => t.FromLocation).Distinct().ToList();
+            var toLocations = trips.Select(t => t.ToLocation).Distinct().ToList();
+
+            cmbFrom.Items.AddRange(fromLocations.ToArray());
+            cmbTo.Items.AddRange(toLocations.ToArray());
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var trips = tripService.GetAllTrips();
+
+            // From filter
+            if (cmbFrom.SelectedItem != null)
+            {
+                string from = cmbFrom.SelectedItem.ToString();
+                trips = trips.Where(t => t.FromLocation == from).ToList();
+            }
+
+            // To filter
+            if (cmbTo.SelectedItem != null)
+            {
+                string to = cmbTo.SelectedItem.ToString();
+                trips = trips.Where(t => t.ToLocation == to).ToList();
+            }
+
+            // Date filter
+            DateTime selectedDate = dtTripDate.Value.Date;
+            trips = trips.Where(t => t.Departure.Date == selectedDate).ToList();
+
+            // Passenger filter (NEW)
+            int passengers = (int)numPassengers.Value;
+
+            if (passengers > 0)
+            {
+                trips = trips.Where(t => t.SeatsAvailable >= passengers).ToList();
+            }
+            dgvTrips.DataSource = trips;
+
+            if (trips.Count == 0)
+            {
+                MessageBox.Show("No trips available for selected filters.");
+            }
+        }
+
+        private void btnViewTrips_Click(object sender, EventArgs e)
+        {
+            LoadTrips();
+        }
+
+        private void btnBookTrip_Click(object sender, EventArgs e)
+        {
+            LoadTrips();
         }
     }
 }

@@ -3,6 +3,7 @@ using BST.Models;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,23 +14,57 @@ namespace BST.Services
     {
         private DatabaseService db = new DatabaseService();
 
-        public void BookTicket(int userId, int tripId, int seatCount, decimal price)
+        public bool BookTicket(int userId, int tripId, int seatCount, decimal price)
         {
             using SqlConnection conn = db.GetConnection();
             conn.Open();
 
-            string query = @"INSERT INTO Ticket
-            (UserID,TripID,SeatCount,Price,Status)
-            VALUES (@UserID,@TripID,@SeatCount,@Price,'Active')";
+            // 1️⃣ Get BusID for this trip
+            string busQuery = "SELECT BusID FROM Trip WHERE TripID=@TripID";
+            SqlCommand busCmd = new SqlCommand(busQuery, conn);
+            busCmd.Parameters.AddWithValue("@TripID", tripId);
 
-            SqlCommand cmd = new SqlCommand(query, conn);
+            int busId = (int)busCmd.ExecuteScalar();
 
-            cmd.Parameters.AddWithValue("@UserID", userId);
-            cmd.Parameters.AddWithValue("@TripID", tripId);
-            cmd.Parameters.AddWithValue("@SeatCount", seatCount);
-            cmd.Parameters.AddWithValue("@Price", price);
+            // 2️⃣ Check available seats
+            string seatQuery = "SELECT SeatsAvailable FROM Bus WHERE BusID=@BusID";
+            SqlCommand seatCmd = new SqlCommand(seatQuery, conn);
+            seatCmd.Parameters.AddWithValue("@BusID", busId);
 
-            cmd.ExecuteNonQuery();
+            int seatsAvailable = (int)seatCmd.ExecuteScalar();
+
+            if (seatCount > seatsAvailable)
+            {
+                MessageBox.Show("Not enough seats available.");
+                return false;
+            }
+
+            // 3️⃣ Insert ticket
+            string ticketQuery = @"INSERT INTO Ticket (UserID,TripID,SeatCount,Price,Status)
+                           VALUES (@UserID,@TripID,@Seats,@Price,'Active')";
+
+            SqlCommand ticketCmd = new SqlCommand(ticketQuery, conn);
+
+            ticketCmd.Parameters.AddWithValue("@UserID", userId);
+            ticketCmd.Parameters.AddWithValue("@TripID", tripId);
+            ticketCmd.Parameters.AddWithValue("@Seats", seatCount);
+            ticketCmd.Parameters.AddWithValue("@Price", price);
+
+            ticketCmd.ExecuteNonQuery();
+
+            // 4️⃣ Reduce available seats
+            string updateSeats = @"UPDATE Bus 
+                           SET SeatsAvailable = SeatsAvailable - @Seats
+                           WHERE BusID=@BusID";
+
+            SqlCommand updateCmd = new SqlCommand(updateSeats, conn);
+
+            updateCmd.Parameters.AddWithValue("@Seats", seatCount);
+            updateCmd.Parameters.AddWithValue("@BusID", busId);
+
+            updateCmd.ExecuteNonQuery();
+
+            return true;
         }
 
         public List<Ticket> GetUserTickets(int userId)
@@ -60,6 +95,32 @@ namespace BST.Services
             }
 
             return tickets;
+        }
+
+        public DataTable GetAllTickets()
+        {
+            using SqlConnection conn = db.GetConnection();
+            conn.Open();
+
+            string query = @"
+            SELECT 
+                t.TicketID,
+                u.Email AS [User],
+                tr.FromLocation + ' -> ' + tr.ToLocation AS Route,
+                tr.Departure,
+                t.SeatCount AS Seats,
+                t.Price,
+                t.Status
+            FROM Ticket t
+            JOIN Users u ON t.UserID = u.UserID
+            JOIN Trip tr ON t.TripID = tr.TripID";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
         }
     }
 }
