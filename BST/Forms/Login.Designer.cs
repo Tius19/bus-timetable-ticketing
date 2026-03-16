@@ -35,6 +35,7 @@
             label3 = new Label();
             btnLogin = new Button();
             btnRegister = new Button();
+            btnShowHide = new Button();
             SuspendLayout();
             // 
             // label1
@@ -87,7 +88,7 @@
             // btnLogin
             // 
             btnLogin.AccessibleName = "btnLogin";
-            btnLogin.Location = new Point(104, 240);
+            btnLogin.Location = new Point(147, 240);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(100, 23);
             btnLogin.TabIndex = 5;
@@ -98,7 +99,7 @@
             // btnRegister
             // 
             btnRegister.AccessibleName = "btnRegister";
-            btnRegister.Location = new Point(235, 240);
+            btnRegister.Location = new Point(268, 240);
             btnRegister.Name = "btnRegister";
             btnRegister.Size = new Size(100, 23);
             btnRegister.TabIndex = 6;
@@ -106,11 +107,22 @@
             btnRegister.UseVisualStyleBackColor = true;
             btnRegister.Click += btnRegister_Click;
             // 
+            // btnShowHide
+            // 
+            btnShowHide.Location = new Point(374, 167);
+            btnShowHide.Name = "btnShowHide";
+            btnShowHide.Size = new Size(30, 23);
+            btnShowHide.TabIndex = 7;
+            btnShowHide.Text = "👁️";
+            btnShowHide.UseVisualStyleBackColor = true;
+            btnShowHide.Click += btnShowHide_Click;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(416, 383);
+            ClientSize = new Size(466, 382);
+            Controls.Add(btnShowHide);
             Controls.Add(btnRegister);
             Controls.Add(btnLogin);
             Controls.Add(label3);
@@ -133,5 +145,6 @@
         private Label label3;
         private Button btnLogin;
         private Button btnRegister;
+        private Button btnShowHide;
     }
 }

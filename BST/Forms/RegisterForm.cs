@@ -92,5 +92,15 @@ namespace BST.Forms
         {
 
         }
+
+        private void btnShowHidepass_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
+        }
+
+        private void btnShowHideConfirmpass_Click(object sender, EventArgs e)
+        {
+            txtConfirmPassword.UseSystemPasswordChar = !txtConfirmPassword.UseSystemPasswordChar;
+        }
     }
 }

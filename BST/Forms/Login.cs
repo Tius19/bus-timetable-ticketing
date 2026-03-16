@@ -61,5 +61,11 @@ namespace BST
             register.Show();
             this.Hide();
         }
+
+        private void btnShowHide_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
+
+        }
     }
 }

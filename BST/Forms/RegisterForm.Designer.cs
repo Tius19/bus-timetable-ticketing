@@ -39,6 +39,8 @@
             label3 = new Label();
             txtConfirmPassword = new TextBox();
             label4 = new Label();
+            btnShowHidepass = new Button();
+            btnShowHideConfirmpass = new Button();
             SuspendLayout();
             // 
             // label1
@@ -138,11 +140,33 @@
             label4.TabIndex = 10;
             label4.Text = "Confirm Password";
             // 
+            // btnShowHidepass
+            // 
+            btnShowHidepass.Location = new Point(392, 197);
+            btnShowHidepass.Name = "btnShowHidepass";
+            btnShowHidepass.Size = new Size(30, 23);
+            btnShowHidepass.TabIndex = 12;
+            btnShowHidepass.Text = "👁️";
+            btnShowHidepass.UseVisualStyleBackColor = true;
+            btnShowHidepass.Click += btnShowHidepass_Click;
+            // 
+            // btnShowHideConfirmpass
+            // 
+            btnShowHideConfirmpass.Location = new Point(392, 239);
+            btnShowHideConfirmpass.Name = "btnShowHideConfirmpass";
+            btnShowHideConfirmpass.Size = new Size(30, 23);
+            btnShowHideConfirmpass.TabIndex = 13;
+            btnShowHideConfirmpass.Text = "👁️";
+            btnShowHideConfirmpass.UseVisualStyleBackColor = true;
+            btnShowHideConfirmpass.Click += btnShowHideConfirmpass_Click;
+            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(423, 402);
+            ClientSize = new Size(493, 407);
+            Controls.Add(btnShowHideConfirmpass);
+            Controls.Add(btnShowHidepass);
             Controls.Add(txtConfirmPassword);
             Controls.Add(label4);
             Controls.Add(txtUsername);
@@ -174,5 +198,7 @@
         private Label label3;
         private TextBox txtConfirmPassword;
         private Label label4;
+        private Button btnShowHidepass;
+        private Button btnShowHideConfirmpass;
     }
 }
