@@ -18,6 +18,7 @@ namespace BST.Forms
     {
         // NEW: Trip service
         TripService tripService = new TripService();
+        TicketService ticketService = new TicketService();
 
         public UserDashboardForm()
         {
@@ -39,6 +40,78 @@ namespace BST.Forms
 
             dgvTrips.AutoGenerateColumns = false; // IMPORTANT FIX
             dgvTrips.DataSource = trips;
+        }
+
+        // Load user's booked trips
+        private void LoadMyTrips()
+        {
+            var userTickets = ticketService.GetUserTickets(Session.CurrentUser.UserID);
+            var myTrips = new List<Trip>();
+
+            foreach (var ticket in userTickets)
+            {
+                var trip = tripService.GetAllTrips().FirstOrDefault(t => t.TripID == ticket.TripID);
+                if (trip != null && trip.Status != "Cancelled")
+                {
+                    myTrips.Add(trip);
+                }
+            }
+
+            dgvTrips.AutoGenerateColumns = false;
+            dgvTrips.DataSource = myTrips;
+
+            if (myTrips.Count == 0)
+            {
+                MessageBox.Show("You have no booked trips.");
+            }
+        }
+
+        // Load user's past trips
+        private void LoadPastTrips()
+        {
+            var userTickets = ticketService.GetUserTickets(Session.CurrentUser.UserID);
+            var pastTrips = new List<Trip>();
+
+            foreach (var ticket in userTickets)
+            {
+                var trip = tripService.GetAllTrips().FirstOrDefault(t => t.TripID == ticket.TripID);
+                if (trip != null && trip.Departure < DateTime.Now && trip.Status != "Cancelled")
+                {
+                    pastTrips.Add(trip);
+                }
+            }
+
+            dgvTrips.AutoGenerateColumns = false;
+            dgvTrips.DataSource = pastTrips;
+
+            if (pastTrips.Count == 0)
+            {
+                MessageBox.Show("You have no past trips.");
+            }
+        }
+
+        // Load user's cancelled trips
+        private void LoadCancelledTrips()
+        {
+            var userTickets = ticketService.GetUserTickets(Session.CurrentUser.UserID);
+            var cancelledTrips = new List<Trip>();
+
+            foreach (var ticket in userTickets)
+            {
+                var trip = tripService.GetAllTrips().FirstOrDefault(t => t.TripID == ticket.TripID);
+                if (trip != null && trip.Status == "Cancelled")
+                {
+                    cancelledTrips.Add(trip);
+                }
+            }
+
+            dgvTrips.AutoGenerateColumns = false;
+            dgvTrips.DataSource = cancelledTrips;
+
+            if (cancelledTrips.Count == 0)
+            {
+                MessageBox.Show("You have no cancelled trips.");
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -131,12 +204,38 @@ namespace BST.Forms
 
         private void btnViewTrips_Click(object sender, EventArgs e)
         {
-            LoadTrips();
+            LoadMyTrips();
         }
 
         private void btnBookTrip_Click(object sender, EventArgs e)
         {
             LoadTrips();
+        }
+
+        private void btnPastTrips_Click(object sender, EventArgs e)
+        {
+            LoadPastTrips();
+        }
+
+        private void btnCancelledTrips_Click(object sender, EventArgs e)
+        {
+            LoadCancelledTrips();
+        }
+
+        // NEW: Logout button click handler
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.CurrentUser = null;
+
+            Login login = new Login();
+            login.Show();
+
+            this.Close();
+        }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

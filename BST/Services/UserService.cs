@@ -53,6 +53,20 @@ namespace BST.Services
             cmd.ExecuteNonQuery();
         }
 
+        // NEW: Demote an admin back to a regular user
+        public void DemoteAdmin(int userId)
+        {
+            using SqlConnection conn = db.GetConnection();
+            conn.Open();
+
+            string query = "UPDATE Users SET IsAdmin = 0 WHERE UserID = @UserID";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@UserID", userId);
+
+            cmd.ExecuteNonQuery();
+        }
+
         public List<User> SearchUsers(string keyword)
         {
             List<User> users = new List<User>();

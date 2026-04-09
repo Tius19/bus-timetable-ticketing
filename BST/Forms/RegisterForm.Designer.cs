@@ -46,51 +46,54 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label1.Location = new Point(101, 35);
+            label1.Font = new Font("Sylfaen", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(115, 45);
             label1.Name = "label1";
-            label1.Size = new Size(237, 30);
+            label1.Size = new Size(320, 36);
             label1.TabIndex = 1;
             label1.Text = "CATAN BUS REGISTER";
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(54, 160);
+            lblEmail.Location = new Point(62, 202);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(36, 15);
+            lblEmail.Size = new Size(42, 19);
             lblEmail.TabIndex = 2;
             lblEmail.Text = "Email";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(54, 200);
+            label2.Location = new Point(62, 254);
             label2.Name = "label2";
-            label2.Size = new Size(57, 15);
+            label2.Size = new Size(70, 19);
             label2.TabIndex = 3;
             label2.Text = "Password";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(179, 157);
+            txtEmail.Location = new Point(205, 199);
+            txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(200, 23);
+            txtEmail.Size = new Size(228, 27);
             txtEmail.TabIndex = 4;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(179, 197);
+            txtPassword.Location = new Point(205, 250);
+            txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(200, 23);
+            txtPassword.Size = new Size(228, 27);
             txtPassword.TabIndex = 5;
             txtPassword.UseSystemPasswordChar = true;
             // 
             // btnRegister
             // 
-            btnRegister.Location = new Point(119, 296);
+            btnRegister.Location = new Point(136, 375);
+            btnRegister.Margin = new Padding(3, 4, 3, 4);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(75, 23);
+            btnRegister.Size = new Size(86, 29);
             btnRegister.TabIndex = 6;
             btnRegister.Text = "Register";
             btnRegister.UseVisualStyleBackColor = true;
@@ -98,9 +101,10 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(254, 296);
+            btnBack.Location = new Point(290, 375);
+            btnBack.Margin = new Padding(3, 4, 3, 4);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(75, 23);
+            btnBack.Size = new Size(86, 29);
             btnBack.TabIndex = 7;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -108,43 +112,45 @@
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(179, 116);
+            txtUsername.Location = new Point(205, 147);
+            txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(200, 23);
+            txtUsername.Size = new Size(228, 27);
             txtUsername.TabIndex = 9;
-            txtUsername.UseSystemPasswordChar = true;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(54, 119);
+            label3.Location = new Point(62, 151);
             label3.Name = "label3";
-            label3.Size = new Size(62, 15);
+            label3.Size = new Size(74, 19);
             label3.TabIndex = 8;
             label3.Text = "UserName";
             // 
             // txtConfirmPassword
             // 
-            txtConfirmPassword.Location = new Point(179, 236);
+            txtConfirmPassword.Location = new Point(205, 299);
+            txtConfirmPassword.Margin = new Padding(3, 4, 3, 4);
             txtConfirmPassword.Name = "txtConfirmPassword";
-            txtConfirmPassword.Size = new Size(200, 23);
+            txtConfirmPassword.Size = new Size(228, 27);
             txtConfirmPassword.TabIndex = 11;
             txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(54, 239);
+            label4.Location = new Point(62, 303);
             label4.Name = "label4";
-            label4.Size = new Size(104, 15);
+            label4.Size = new Size(124, 19);
             label4.TabIndex = 10;
             label4.Text = "Confirm Password";
             // 
             // btnShowHidepass
             // 
-            btnShowHidepass.Location = new Point(392, 197);
+            btnShowHidepass.Location = new Point(448, 250);
+            btnShowHidepass.Margin = new Padding(3, 4, 3, 4);
             btnShowHidepass.Name = "btnShowHidepass";
-            btnShowHidepass.Size = new Size(30, 23);
+            btnShowHidepass.Size = new Size(34, 29);
             btnShowHidepass.TabIndex = 12;
             btnShowHidepass.Text = "👁️";
             btnShowHidepass.UseVisualStyleBackColor = true;
@@ -152,9 +158,10 @@
             // 
             // btnShowHideConfirmpass
             // 
-            btnShowHideConfirmpass.Location = new Point(392, 239);
+            btnShowHideConfirmpass.Location = new Point(448, 303);
+            btnShowHideConfirmpass.Margin = new Padding(3, 4, 3, 4);
             btnShowHideConfirmpass.Name = "btnShowHideConfirmpass";
-            btnShowHideConfirmpass.Size = new Size(30, 23);
+            btnShowHideConfirmpass.Size = new Size(34, 29);
             btnShowHideConfirmpass.TabIndex = 13;
             btnShowHideConfirmpass.Text = "👁️";
             btnShowHideConfirmpass.UseVisualStyleBackColor = true;
@@ -162,9 +169,10 @@
             // 
             // RegisterForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(493, 407);
+            BackColor = Color.Beige;
+            ClientSize = new Size(563, 516);
             Controls.Add(btnShowHideConfirmpass);
             Controls.Add(btnShowHidepass);
             Controls.Add(txtConfirmPassword);
@@ -178,6 +186,8 @@
             Controls.Add(label2);
             Controls.Add(lblEmail);
             Controls.Add(label1);
+            Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "RegisterForm";
             Text = "RegisterForm";
             Load += RegisterForm_Load;

@@ -27,17 +27,34 @@ namespace BST.Forms
 
             foreach (DataGridViewRow row in dgvUsers.Rows)
             {
-                if (row.Cells["IsAdmin"].Value != null &&
-                    Convert.ToBoolean(row.Cells["IsAdmin"].Value))
+                bool isAdmin = false;
+                bool isModerator = false;
+
+                if (row.Cells["IsAdmin"].Value != null)
+                    isAdmin = Convert.ToBoolean(row.Cells["IsAdmin"].Value);
+
+                if (row.Cells["IsModerator"].Value != null)
+                    isModerator = Convert.ToBoolean(row.Cells["IsModerator"].Value);
+
+                if (isModerator)
                 {
-                    row.Cells["Action"].Value = "Already Admin";
+                    row.Cells["Action"].Value = "Cannot Modify";
                     row.Cells["Action"].ReadOnly = true;
+                }
+                else if (isAdmin)
+                {
+                    row.Cells["Action"].Value = "Demote to User";
+                    row.Cells["Action"].ReadOnly = false;
+                }
+                else
+                {
+                    row.Cells["Action"].Value = "Make Admin";
+                    row.Cells["Action"].ReadOnly = false;
                 }
             }
         }
 
-        // Handle Make Admin button click
-
+        // Handle Make Admin / Demote button click
         private void dgvUsers_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -46,14 +63,11 @@ namespace BST.Forms
             {
                 int userId = Convert.ToInt32(dgvUsers.Rows[e.RowIndex].Cells["UserID"].Value);
 
-                bool isAdmin = Convert.ToBoolean(dgvUsers.Rows[e.RowIndex].Cells["IsAdmin"].Value);
+                bool isAdmin = dgvUsers.Rows[e.RowIndex].Cells["IsAdmin"].Value != null &&
+                               Convert.ToBoolean(dgvUsers.Rows[e.RowIndex].Cells["IsAdmin"].Value);
 
-                if (isAdmin)
-                {
-                    MessageBox.Show("This user is already an Admin.");
-                    return;
-                }
-                bool isModerator = Convert.ToBoolean(dgvUsers.Rows[e.RowIndex].Cells["IsModerator"].Value);
+                bool isModerator = dgvUsers.Rows[e.RowIndex].Cells["IsModerator"].Value != null &&
+                                   Convert.ToBoolean(dgvUsers.Rows[e.RowIndex].Cells["IsModerator"].Value);
 
                 if (isModerator)
                 {
@@ -61,9 +75,18 @@ namespace BST.Forms
                     return;
                 }
 
-                userService.MakeAdmin(userId);
-
-                MessageBox.Show("User promoted to Admin.");
+                if (isAdmin)
+                {
+                    // Demote admin to regular user
+                    userService.DemoteAdmin(userId);
+                    MessageBox.Show("User demoted to Regular User.");
+                }
+                else
+                {
+                    // Promote user to admin
+                    userService.MakeAdmin(userId);
+                    MessageBox.Show("User promoted to Admin.");
+                }
 
                 LoadUsers();
             }
@@ -84,11 +107,29 @@ namespace BST.Forms
 
             foreach (DataGridViewRow row in dgvUsers.Rows)
             {
-                if (row.Cells["IsAdmin"].Value != null &&
-                    Convert.ToBoolean(row.Cells["IsAdmin"].Value))
+                bool isAdmin = false;
+                bool isModerator = false;
+
+                if (row.Cells["IsAdmin"].Value != null)
+                    isAdmin = Convert.ToBoolean(row.Cells["IsAdmin"].Value);
+
+                if (row.Cells["IsModerator"].Value != null)
+                    isModerator = Convert.ToBoolean(row.Cells["IsModerator"].Value);
+
+                if (isModerator)
                 {
-                    row.Cells["Action"].Value = "Already Admin";
+                    row.Cells["Action"].Value = "Cannot Modify";
                     row.Cells["Action"].ReadOnly = true;
+                }
+                else if (isAdmin)
+                {
+                    row.Cells["Action"].Value = "Demote to User";
+                    row.Cells["Action"].ReadOnly = false;
+                }
+                else
+                {
+                    row.Cells["Action"].Value = "Make Admin";
+                    row.Cells["Action"].ReadOnly = false;
                 }
             }
         }
@@ -104,6 +145,17 @@ namespace BST.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             LoadUsers();
+        }
+
+        // NEW: Logout button click handler
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.CurrentUser = null;
+
+            Login login = new Login();
+            login.Show();
+
+            this.Close();
         }
     }
 }
