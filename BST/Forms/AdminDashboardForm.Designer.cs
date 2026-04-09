@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panelHeader = new Panel();
             btnLogout = new Button();
             btnViewBookings = new Button();
             btnManageSchedules = new Button();
             lblTitle = new Label();
             panel1 = new Panel();
+            dtArrivalDate = new DateTimePicker();
             btnAddBus = new Button();
             dtArrival = new DateTimePicker();
             dtDeparture = new DateTimePicker();
@@ -60,6 +61,7 @@
             Status = new DataGridViewTextBoxColumn();
             CancelTrip = new DataGridViewButtonColumn();
             Delete = new DataGridViewButtonColumn();
+            label9 = new Label();
             panelHeader.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSchedules).BeginInit();
@@ -76,7 +78,7 @@
             panelHeader.Location = new Point(0, 0);
             panelHeader.Margin = new Padding(3, 4, 3, 4);
             panelHeader.Name = "panelHeader";
-            panelHeader.Size = new Size(914, 128);
+            panelHeader.Size = new Size(929, 128);
             panelHeader.TabIndex = 1;
             // 
             // btnLogout
@@ -129,6 +131,8 @@
             // panel1
             // 
             panel1.BackColor = Color.LightGray;
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(dtArrivalDate);
             panel1.Controls.Add(btnAddBus);
             panel1.Controls.Add(dtArrival);
             panel1.Controls.Add(dtDeparture);
@@ -150,8 +154,15 @@
             panel1.Location = new Point(0, 128);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(914, 269);
+            panel1.Size = new Size(929, 269);
             panel1.TabIndex = 2;
+            // 
+            // dtArrivalDate
+            // 
+            dtArrivalDate.Location = new Point(717, 73);
+            dtArrivalDate.Name = "dtArrivalDate";
+            dtArrivalDate.Size = new Size(162, 27);
+            dtArrivalDate.TabIndex = 19;
             // 
             // btnAddBus
             // 
@@ -226,15 +237,15 @@
             // 
             // dtDate
             // 
-            dtDate.Location = new Point(695, 65);
+            dtDate.Location = new Point(516, 73);
             dtDate.Margin = new Padding(3, 4, 3, 4);
             dtDate.Name = "dtDate";
-            dtDate.Size = new Size(169, 27);
+            dtDate.Size = new Size(168, 27);
             dtDate.TabIndex = 12;
             // 
             // txtTo
             // 
-            txtTo.Location = new Point(441, 67);
+            txtTo.Location = new Point(334, 73);
             txtTo.Margin = new Padding(3, 4, 3, 4);
             txtTo.Name = "txtTo";
             txtTo.Size = new Size(114, 27);
@@ -242,7 +253,7 @@
             // 
             // txtFrom
             // 
-            txtFrom.Location = new Point(131, 69);
+            txtFrom.Location = new Point(107, 73);
             txtFrom.Margin = new Padding(3, 4, 3, 4);
             txtFrom.Name = "txtFrom";
             txtFrom.Size = new Size(114, 27);
@@ -263,11 +274,11 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(318, 137);
+            label6.Location = new Point(325, 136);
             label6.Name = "label6";
-            label6.Size = new Size(51, 19);
+            label6.Size = new Size(85, 19);
             label6.TabIndex = 8;
-            label6.Text = "Arrival";
+            label6.Text = "Arrival Time";
             // 
             // label5
             // 
@@ -275,25 +286,25 @@
             label5.Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.Location = new Point(14, 135);
             label5.Name = "label5";
-            label5.Size = new Size(71, 19);
+            label5.Size = new Size(105, 19);
             label5.TabIndex = 7;
-            label5.Text = "Departure";
+            label5.Text = "Departure Time";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(619, 72);
+            label4.Location = new Point(541, 53);
             label4.Name = "label4";
-            label4.Size = new Size(39, 19);
+            label4.Size = new Size(105, 19);
             label4.TabIndex = 6;
-            label4.Text = "Date";
+            label4.Text = "Departure Date";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(314, 73);
+            label3.Location = new Point(245, 75);
             label3.Name = "label3";
             label3.Size = new Size(83, 19);
             label3.TabIndex = 5;
@@ -303,7 +314,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(14, 73);
+            label2.Location = new Point(3, 73);
             label2.Name = "label2";
             label2.Size = new Size(98, 19);
             label2.TabIndex = 4;
@@ -332,7 +343,7 @@
             dgvSchedules.Name = "dgvSchedules";
             dgvSchedules.ReadOnly = true;
             dgvSchedules.RowHeadersWidth = 51;
-            dgvSchedules.Size = new Size(914, 203);
+            dgvSchedules.Size = new Size(929, 203);
             dgvSchedules.TabIndex = 3;
             dgvSchedules.CellContentClick += dgvSchedules_CellContentClick;
             // 
@@ -357,8 +368,8 @@
             // Date
             // 
             Date.DataPropertyName = "Departure";
-            dataGridViewCellStyle5.Format = "dd MMM yyyy HH:mm";
-            Date.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Format = "dd MMM yyyy HH:mm";
+            Date.DefaultCellStyle = dataGridViewCellStyle2;
             Date.HeaderText = "Departure Date";
             Date.MinimumWidth = 6;
             Date.Name = "Date";
@@ -403,11 +414,21 @@
             Delete.UseColumnTextForButtonValue = true;
             Delete.Width = 125;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(755, 53);
+            label9.Name = "label9";
+            label9.Size = new Size(85, 19);
+            label9.TabIndex = 20;
+            label9.Text = "Arrival Date";
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(929, 600);
             Controls.Add(dgvSchedules);
             Controls.Add(panel1);
             Controls.Add(panelHeader);
@@ -456,5 +477,7 @@
         private DataGridViewButtonColumn CancelTrip;
         private DataGridViewButtonColumn Delete;
         private Button btnAddBus;
+        private DateTimePicker dtArrivalDate;
+        private Label label9;
     }
 }

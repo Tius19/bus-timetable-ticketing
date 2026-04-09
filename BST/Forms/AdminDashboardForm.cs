@@ -24,6 +24,9 @@ namespace BST.Forms
         {
             LoadBuses();
             LoadTrips();
+
+            // Add this line so the arrival date starts as Today
+            dtArrivalDate.Value = DateTime.Now;
         }
         private void LoadTrips()
         {
@@ -46,21 +49,38 @@ namespace BST.Forms
 
         private void btnAddSchedule_Click(object sender, EventArgs e)
         {
-            if (txtFrom.Text == "" || txtTo.Text == "" || txtPrice.Text == "" || cmbBus.SelectedValue == null)
+            //  Check if the textboxes exist and have values
+            if (string.IsNullOrWhiteSpace(txtFrom.Text) ||
+                string.IsNullOrWhiteSpace(txtTo.Text) ||
+                string.IsNullOrWhiteSpace(txtPrice.Text) ||
+                cmbBus.SelectedValue == null)
             {
                 MessageBox.Show("Please fill all fields and select a bus");
                 return;
             }
+
+            //  Validate Price
             if (!decimal.TryParse(txtPrice.Text, out decimal price))
             {
-                MessageBox.Show("Enter valid price");
+                MessageBox.Show("Enter a valid price");
                 return;
             }
-            DateTime date = dtDate.Value.Date;
 
-            DateTime departure = date.Add(dtDeparture.Value.TimeOfDay);
-            DateTime arrival = date.Add(dtArrival.Value.TimeOfDay);
+            // GET DEPARTURE: Combine Date Picker + Departure Time Picker
+            DateTime departure = dtDate.Value.Date.Add(dtDeparture.Value.TimeOfDay);
 
+            // GET ARRIVAL: Combine NEW Arrival Date Picker + Arrival Time Picker
+            
+            DateTime arrival = dtArrivalDate.Value.Date.Add(dtArrival.Value.TimeOfDay);
+
+            // 5. Logic Check; Arrival cannot be before Departure
+            if (arrival <= departure)
+            {
+                MessageBox.Show("Error: The bus cannot arrive before it departs! Check your Arrival Date.");
+                return;
+            }
+
+            // 6. Create Trip object
             Trip trip = new Trip
             {
                 BusID = (int)cmbBus.SelectedValue,
@@ -71,10 +91,9 @@ namespace BST.Forms
                 Price = price
             };
 
+           
             tripService.AddTrip(trip);
-
             MessageBox.Show("Schedule added successfully");
-
             LoadTrips();
         }
 
