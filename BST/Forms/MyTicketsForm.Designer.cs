@@ -75,6 +75,7 @@
             dgvTickets.RowHeadersWidth = 51;
             dgvTickets.Size = new Size(622, 414);
             dgvTickets.TabIndex = 1;
+            dgvTickets.CellContentClick += dgvTickets_CellContentClick;
             // 
             // colTicketID
             // 
@@ -103,7 +104,7 @@
             // colPrice
             // 
             colPrice.DataPropertyName = "Price";
-            colPrice.HeaderText = "Price";
+            colPrice.HeaderText = "Price (Euros)";
             colPrice.MinimumWidth = 6;
             colPrice.Name = "colPrice";
             colPrice.Width = 125;

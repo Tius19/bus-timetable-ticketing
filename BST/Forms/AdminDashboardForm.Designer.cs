@@ -35,6 +35,7 @@
             btnManageSchedules = new Button();
             lblTitle = new Label();
             panel1 = new Panel();
+            label9 = new Label();
             dtArrivalDate = new DateTimePicker();
             btnAddBus = new Button();
             dtArrival = new DateTimePicker();
@@ -61,7 +62,6 @@
             Status = new DataGridViewTextBoxColumn();
             CancelTrip = new DataGridViewButtonColumn();
             Delete = new DataGridViewButtonColumn();
-            label9 = new Label();
             panelHeader.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSchedules).BeginInit();
@@ -157,6 +157,16 @@
             panel1.Size = new Size(929, 269);
             panel1.TabIndex = 2;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(755, 53);
+            label9.Name = "label9";
+            label9.Size = new Size(85, 19);
+            label9.TabIndex = 20;
+            label9.Text = "Arrival Date";
+            // 
             // dtArrivalDate
             // 
             dtArrivalDate.Location = new Point(717, 73);
@@ -214,6 +224,7 @@
             cmbBus.Name = "cmbBus";
             cmbBus.Size = new Size(138, 28);
             cmbBus.TabIndex = 4;
+            cmbBus.SelectedIndexChanged += cmbBus_SelectedIndexChanged;
             // 
             // btnAddSchedule
             // 
@@ -229,11 +240,12 @@
             // 
             // txtPrice
             // 
-            txtPrice.Location = new Point(697, 131);
+            txtPrice.Location = new Point(713, 132);
             txtPrice.Margin = new Padding(3, 4, 3, 4);
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new Size(114, 27);
             txtPrice.TabIndex = 14;
+            txtPrice.TextChanged += txtPrice_TextChanged;
             // 
             // dtDate
             // 
@@ -265,9 +277,9 @@
             label7.Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.Location = new Point(618, 136);
             label7.Name = "label7";
-            label7.Size = new Size(40, 19);
+            label7.Size = new Size(89, 19);
             label7.TabIndex = 9;
-            label7.Text = "Price";
+            label7.Text = "Price (Euros)";
             label7.Click += label7_Click;
             // 
             // label6
@@ -413,16 +425,6 @@
             Delete.Text = "Delete";
             Delete.UseColumnTextForButtonValue = true;
             Delete.Width = 125;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Sylfaen", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(755, 53);
-            label9.Name = "label9";
-            label9.Size = new Size(85, 19);
-            label9.TabIndex = 20;
-            label9.Text = "Arrival Date";
             // 
             // AdminDashboardForm
             // 

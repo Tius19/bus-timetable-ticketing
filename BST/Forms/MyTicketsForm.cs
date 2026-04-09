@@ -43,5 +43,10 @@ namespace BST.Forms
         {
 
         }
+
+        private void dgvTickets_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

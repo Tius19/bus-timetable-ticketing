@@ -39,6 +39,10 @@
             lblWelcome = new Label();
             lblTitle = new Label();
             panelSearch = new Panel();
+            pictureBox5 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
             btnSearch = new Button();
             numPassengers = new NumericUpDown();
             label4 = new Label();
@@ -63,20 +67,16 @@
             Price = new DataGridViewTextBoxColumn();
             colStatus = new DataGridViewTextBoxColumn();
             colBook = new DataGridViewButtonColumn();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            pictureBox5 = new PictureBox();
             panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numPassengers).BeginInit();
             panelOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTrips).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // panelHeader
@@ -186,6 +186,46 @@
             panelSearch.Name = "panelSearch";
             panelSearch.Size = new Size(1191, 289);
             panelSearch.TabIndex = 1;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(847, 102);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(182, 170);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 11;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(599, 102);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(182, 170);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 10;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(339, 102);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(182, 170);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 9;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(87, 102);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(182, 170);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 8;
+            pictureBox2.TabStop = false;
             // 
             // btnSearch
             // 
@@ -405,7 +445,7 @@
             // Price
             // 
             Price.DataPropertyName = "Price";
-            Price.HeaderText = "Price";
+            Price.HeaderText = "Price (Euros)";
             Price.MinimumWidth = 6;
             Price.Name = "Price";
             Price.Width = 125;
@@ -427,46 +467,6 @@
             colBook.UseColumnTextForButtonValue = true;
             colBook.Width = 125;
             // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(87, 102);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(182, 170);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 8;
-            pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(339, 102);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(182, 170);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 9;
-            pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(599, 102);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(182, 170);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 10;
-            pictureBox4.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(847, 102);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(182, 170);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 11;
-            pictureBox5.TabStop = false;
-            // 
             // UserDashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -485,13 +485,13 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelSearch.ResumeLayout(false);
             panelSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)numPassengers).EndInit();
             panelOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvTrips).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
         }
 
@@ -518,6 +518,11 @@
         private Button btnBookTrip;
         private Button btnPastTrips;
         private DataGridView dgvTrips;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
         private DataGridViewTextBoxColumn TripID;
         private DataGridViewTextBoxColumn BusNo;
         private DataGridViewTextBoxColumn colFrom;
@@ -528,10 +533,5 @@
         private DataGridViewTextBoxColumn Price;
         private DataGridViewTextBoxColumn colStatus;
         private DataGridViewButtonColumn colBook;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox5;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox2;
     }
 }

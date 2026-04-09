@@ -70,7 +70,7 @@ namespace BST.Forms
             DateTime departure = dtDate.Value.Date.Add(dtDeparture.Value.TimeOfDay);
 
             // GET ARRIVAL: Combine NEW Arrival Date Picker + Arrival Time Picker
-            
+
             DateTime arrival = dtArrivalDate.Value.Date.Add(dtArrival.Value.TimeOfDay);
 
             // 5. Logic Check; Arrival cannot be before Departure
@@ -91,7 +91,7 @@ namespace BST.Forms
                 Price = price
             };
 
-           
+
             tripService.AddTrip(trip);
             MessageBox.Show("Schedule added successfully");
             LoadTrips();
@@ -165,6 +165,16 @@ namespace BST.Forms
             form.ShowDialog();
 
             LoadBuses();
+        }
+
+        private void cmbBus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

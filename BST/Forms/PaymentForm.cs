@@ -16,7 +16,7 @@ namespace BST.Forms
         PaymentService paymentService = new PaymentService();
         TicketService ticketService = new TicketService();
         private System.Windows.Forms.Timer sessionTimer;
-        private int timeRemaining = 30;
+        private int timeRemaining = 90;
 
         int tripId;
         int userId;
@@ -260,6 +260,11 @@ namespace BST.Forms
             }
 
             return (sum % 10 == 0);
+        }
+
+        private void panelHeader_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
