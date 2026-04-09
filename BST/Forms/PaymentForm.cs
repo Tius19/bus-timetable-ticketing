@@ -15,6 +15,8 @@ namespace BST.Forms
     {
         PaymentService paymentService = new PaymentService();
         TicketService ticketService = new TicketService();
+        private System.Windows.Forms.Timer sessionTimer;
+        private int timeRemaining = 30;
 
         int tripId;
         int userId;
@@ -31,10 +33,32 @@ namespace BST.Forms
             this.seatCount = seatCount;
 
             txtAmount.Text = amount.ToString();
+
+            // Initialize session timeout timer
+            sessionTimer = new System.Windows.Forms.Timer();
+            sessionTimer.Interval = 1000; // 1 second
+            sessionTimer.Tick += SessionTimer_Tick;
+        }
+
+        private void SessionTimer_Tick(object sender, EventArgs e)
+        {
+            timeRemaining--;
+
+            if (timeRemaining <= 0)
+            {
+                sessionTimer.Stop();
+                MessageBox.Show("Session expired due to inactivity. Please try again.",
+                                "Session Timeout",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
         }
 
         private void btnPay_Click(object sender, EventArgs e)
         {
+            sessionTimer.Stop(); // Stop timer when payment is processed
             btnPay.Enabled = false;
             string name = txtCardName.Text.Trim();
             string card = txtCardNumber.Text.Replace(" ", "");
@@ -54,6 +78,7 @@ namespace BST.Forms
                 MessageBox.Show("Name on card should contain letters only.");
                 txtCardName.Focus();
                 btnPay.Enabled = true;
+                sessionTimer.Start();
                 return;
             }
 
@@ -64,6 +89,7 @@ namespace BST.Forms
                 MessageBox.Show("Card number must contain exactly 16 digits.");
                 txtCardNumber.Focus();
                 btnPay.Enabled = true;
+                sessionTimer.Start();
                 return;
             }
 
@@ -74,6 +100,7 @@ namespace BST.Forms
                 MessageBox.Show("Card number failed validation. Please check the digits.");
                 txtCardNumber.Focus();
                 btnPay.Enabled = true;
+                sessionTimer.Start();
                 return;
             }
 
@@ -84,6 +111,7 @@ namespace BST.Forms
                 MessageBox.Show("Expiry must be in MM/YY format (example: 09/28).");
                 txtExpiry.Focus();
                 btnPay.Enabled = true;
+                sessionTimer.Start();
                 return;
             }
 
@@ -100,6 +128,7 @@ namespace BST.Forms
                 MessageBox.Show("This card has expired.");
                 txtExpiry.Focus();
                 btnPay.Enabled = true;
+                sessionTimer.Start();
                 return;
             }
 
@@ -110,6 +139,7 @@ namespace BST.Forms
                 MessageBox.Show("CVV must contain exactly 3 digits.");
                 txtCVV.Focus();
                 btnPay.Enabled = true;
+                sessionTimer.Start();
                 return;
             }
 
@@ -133,6 +163,7 @@ namespace BST.Forms
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            sessionTimer.Stop();
             DialogResult result = MessageBox.Show(
         "Are you sure you want to cancel the payment?",
         "Cancel Payment",
@@ -142,6 +173,10 @@ namespace BST.Forms
             if (result == DialogResult.Yes)
             {
                 this.Close();
+            }
+            else
+            {
+                sessionTimer.Start();
             }
         }
 
@@ -163,7 +198,7 @@ namespace BST.Forms
 
         private void PaymentForm_Load(object sender, EventArgs e)
         {
-
+            sessionTimer.Start();
         }
 
         private void txtCardNumber_TextChanged(object sender, EventArgs e)
