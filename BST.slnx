@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="BST.Tests/BST.Tests.csproj" Id="d3121adb-fa51-4e9d-bc3f-6aea2c082424" />
   <Project Path="BST/BST.csproj" />
 </Solution>
